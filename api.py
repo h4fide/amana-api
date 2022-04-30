@@ -13,7 +13,7 @@ class TrackerApi(object):
         if req.json()["response"] != '0':
             raise ValueError("Unknown Error!")
         else:
-            return req.json()["data"]
+            return req.json()["data"][0]
 
 
     @staticmethod

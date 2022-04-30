@@ -4,9 +4,10 @@ import os
 
 statut = TrackerApi.getLastStatut('TRACKING_CODE_HERE')
 storing_file = '.storing.dat'
+if statut == 'Missing':
+    print("Your Package Is Not Registerd In The System Yet")
+    sys.exit()
 
-
-# Post Maroc · Aaman · Barid Al Maghrib
 with open(storing_file, 'r') as file:
     current_data = file.read()
 
@@ -28,6 +29,7 @@ while True:
         #but some lines here to send notification/alert to your phone using pushbullet, or something else!
         currentdata()
     else:
+        time.sleep(5)
         print('Nothing New :(\nRecheck After 2 Hours')
         with open(storing_file, 'w') as f:
             f.write(statut)

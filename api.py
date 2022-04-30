@@ -23,12 +23,12 @@ class TrackerApi(object):
         if lastOBool == 'false':
             etat = info[0]['etat']
             if etat == 'Infos.Indisponibles':
-                return "This Package Is Not Registerd In The System Yet"
+                return 'Missing' # This Package Is Not Registerd In The System Yet Or Tracking Code is Wrong
             return etat
         if lastOBool == 'true':
             dernier_statut = info[0]["dernier_statut"]
             if dernier_statut == 'Neant':
-                return "This Package Is Not Registerd In The System Yet"
+                return 'Missing' # This Package Is Not Registerd In The System Yet 
             return dernier_statut
         else:
             return "Unknown"

@@ -17,7 +17,7 @@ TrackerApi.getPackageInformation('TRACKING_CODE')
 
 ## Examples
 
-Shipment last statut
+Shipment last status
 
 ```python3
   TrackerApi.getLastStatut('TRACKING_CODE')

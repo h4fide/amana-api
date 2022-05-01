@@ -1,14 +1,25 @@
-from example.api import TrackerApi
-import time
-import os
+from examples.api import TrackerApi # If that doesn't work, move api.py to the same folder as this script
+from time import sleep
+
+
 trackingnumber = 'TRACKING_CODE_HERE'
 
-storing_file = '.storing.dat'
-if TrackerApi.getLastStatut(trackingnumber) == 'Missing':
-    print("Your Package Is Not Registerd In The System Yet\nScript Continue Checking!")
 
-with open(storing_file, 'r') as file:
-    current_data = file.read()
+laststatut = TrackerApi.getLastStatut(trackingnumber)
+if laststatut == 'Missing':
+    print("Your Package Is Not Registerd In The System Yet\nOr Tracking Number Wrong")
+    sleep(3)
+    print('Script Continue Checking Anyway!')
+    pass
+
+storing_file = '.storing.dat'
+try:
+    with open(storing_file, 'r') as file:
+        current_data = file.read()
+except:
+    with open(storing_file, 'w') as f:
+        f.write(laststatut)
+
 
 def currentdata():
     with open(storing_file, 'r') as file:
@@ -20,16 +31,25 @@ def newdata():
         global new_data
         new_data = file2.read()
 
+print('Running')
 while True:
     newdata()
+    laststatut = TrackerApi.getLastStatut(trackingnumber)
     print("Checking Shipment")
-    if current_data != new_data:
-        print("Your Shipment Has A New Status ")
-        #but some lines here to send notification/alert to your phone using pushbullet, or something else!
+
+    if laststatut == 'Envoi livré':
+        print("Your Shipment Has Arrived")
+        break
+    try:
+        if current_data != new_data:
+            print("Your Shipment Has A New Status\nParcel Satuts: "+ new_data)
+            #Put some lines here to send notification/alert to your phone using Pushbullet, Telegram or something else!
+            currentdata()
+        else:
+            print('Nothing New\nRecheck After 2 Hours')
+            sleep(7200) #Check shipment every 2 hours
+            with open(storing_file, 'w') as f:
+                f.write(laststatut)
+    except:
         currentdata()
-    else:
-        time.sleep(5)
-        print('Nothing New Recheck After 2 Hours')
-        time.sleep(7200) #Check shipment every 2 hours
-        with open(storing_file, 'w') as f:
-            f.write(TrackerApi.getLastStatut(trackingnumber))
+        

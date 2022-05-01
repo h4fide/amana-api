@@ -1,12 +1,12 @@
 from example.api import TrackerApi
 import time
 import os
+trackingnumber = 'TRACKING_CODE_HERE'
 
-statut = TrackerApi.getLastStatut('TRACKING_CODE_HERE')
+
 storing_file = '.storing.dat'
-if statut == 'Missing':
-    print("Your Package Is Not Registerd In The System Yet")
-    sys.exit()
+if TrackerApi.getLastStatut(trackingnumber) == 'Missing':
+    print("Your Package Is Not Registerd In The System Yet\nScript Continue Checking!")
 
 with open(storing_file, 'r') as file:
     current_data = file.read()
@@ -30,7 +30,8 @@ while True:
         currentdata()
     else:
         time.sleep(5)
-        print('Nothing New :(\nRecheck After 2 Hours')
+        print('Nothing New Recheck After 2 Hours')
+        time.sleep(7200) #Check shipment every 2 hours
         with open(storing_file, 'w') as f:
-            f.write(statut)
-    time.sleep(7200) #Check shipment every 2 hours
+            f.write(TrackerApi.getLastStatut(trackingnumber))
+    

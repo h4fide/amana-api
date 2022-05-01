@@ -1,4 +1,4 @@
-# Post Morocco API
+# Morocco Post API
 Post Maroc · Aaman · Barid Al Maghrib
 
 ![Logo](https://seeklogo.com/images/A/amana-messagerie-logo-859E7C8309-seeklogo.com.png)
@@ -33,19 +33,18 @@ Get all the information about the parcel as JSON
         {
             "code_bordereau": "LD8******25MA",
             "libelle_produit": "Express - PRN",
-            "date_depot": "10-12-2021",
+            "date_depot": "10-02-2021",
             "destination": "TAZA",
-            "date_livraison": "13-12-2021",
-            "poids": "9.787",
+            "date_livraison": "13-02-2022",
+            "poids": "5.787",
             "destinataire": "h4fide",
             "dernier_statut": "Envoi livré",
             "lieu_depot": "RABAT AL MADINA CD",
             "id_statut": "liv",
-            "code_sitebam": "96347",
             "mtt_crbt": "2070.00",
         }
 ```
-Get price of the package using this command
+Example to get price of the package use this command
 ```python3
   TrackerApi.getPackageInformation('TRACKING_CODE')['mtt_crbt']
 ```
@@ -66,3 +65,9 @@ Output
 | :---------------| :--------------- | :-------- |:--------------------------------------------------- |
 | `lastOperation` | `false` or `true`| **No**    | Show its current status and hide other informations |
 | `trackingNumber`| `TRACKING_CODE`  | **Yes**   | Package tracking number                             |
+
+
+## Contributing
+
+Contributions are always welcome!
+Feel free :)

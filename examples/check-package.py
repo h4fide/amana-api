@@ -42,7 +42,7 @@ while True:
         break
     try:
         if current_data != new_data:
-            print("Your Shipment Has A New Status\nParcel Satuts: "+ new_data)
+            print(f"Your Shipment Has A New Status\nParcel Satuts: {new_data}")
             #Put some lines here to send notification/alert to your phone using Pushbullet, Telegram or something else!
             currentdata()
         else:

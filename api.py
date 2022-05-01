@@ -8,7 +8,7 @@ class TrackerApi(object):
 
     @staticmethod
     def getPackageInformation(trackingNumber):
-        req = requests.post(PROVIDER_URL + '?lastOperation='+ lastOBool + '&trackingNumber=' + trackingNumber)
+        req = requests.get(PROVIDER_URL + '?lastOperation='+ lastOBool + '&trackingNumber=' + trackingNumber)
 
         if req.json()["response"] != '0':
             raise ValueError("Unknown Error!")
@@ -21,12 +21,12 @@ class TrackerApi(object):
         info = TrackerApi.getPackageInformation(trackingNumber)
         
         if lastOBool == 'false':
-            etat = info[0]['etat']
+            etat = info['etat']
             if etat == 'Infos.Indisponibles':
                 return 'Missing' # This Package Is Not Registerd In The System Yet Or Tracking Code is Wrong
             return etat
         if lastOBool == 'true':
-            dernier_statut = info[0]["dernier_statut"]
+            dernier_statut = info["dernier_statut"]
             if dernier_statut == 'Neant':
                 return 'Missing' # This Package Is Not Registerd In The System Yet 
             return dernier_statut

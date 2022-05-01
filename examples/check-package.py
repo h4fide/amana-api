@@ -3,7 +3,6 @@ import time
 import os
 trackingnumber = 'TRACKING_CODE_HERE'
 
-
 storing_file = '.storing.dat'
 if TrackerApi.getLastStatut(trackingnumber) == 'Missing':
     print("Your Package Is Not Registerd In The System Yet\nScript Continue Checking!")
@@ -34,4 +33,3 @@ while True:
         time.sleep(7200) #Check shipment every 2 hours
         with open(storing_file, 'w') as f:
             f.write(TrackerApi.getLastStatut(trackingnumber))
-    

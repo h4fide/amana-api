@@ -4,10 +4,17 @@ PROVIDER_URL = "http://bam.magnetomedia.de/trackinghistory.php"
 lastOBool = 'true'
 
 class TrackerApi(object):
-    """ API AMANA """
-
+    """ 
+    It's a class that makes a POST request to a URL, and returns the JSON response
+    """
     @staticmethod
-    def getPackageInformation(trackingNumber):
+    def getPackageInformation(trackingNumber: str):
+        """
+        It takes a tracking number, and returns a dictionary of information about the package
+        
+        :param trackingNumber: The tracking number of the package
+        :return: A dictionary of the package information.
+        """
         req = requests.get(PROVIDER_URL + '?lastOperation='+ lastOBool + '&trackingNumber=' + trackingNumber)
 
         if req.json()["response"] != '0':
@@ -17,7 +24,13 @@ class TrackerApi(object):
 
 
     @staticmethod
-    def getLastStatut(trackingNumber):
+    def getLastStatut(trackingNumber: str) -> None:
+        """
+        It returns the last status of the package
+        
+        :param trackingNumber: The tracking number of the package
+        :return: The last status of the package
+        """
         info = TrackerApi.getPackageInformation(trackingNumber)
         
         if lastOBool == 'false':

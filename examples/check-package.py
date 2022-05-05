@@ -1,13 +1,13 @@
 from time import sleep
 import sys
+
 try:
     from examples.api import Tracker
 except ImportError :
-    pass
-try: 
-    from api import Tracker
-except:
-    sys.exit("Move api.py to the same folder as this script")
+    try:
+        from api import Tracker
+    except ImportError:
+        sys.exit("Move api.py to the same folder as this script")
 
 trackingnumber = 'TRACKING_CODE_HERE'
 

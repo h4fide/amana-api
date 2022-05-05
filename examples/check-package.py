@@ -1,14 +1,21 @@
-from examples.api import TrackerApi # If that doesn't work, move api.py to the same folder as this script
 from time import sleep
-
+import sys
+try:
+    from examples.api import Tracker
+except ImportError :
+    pass
+try: 
+    from api import Tracker
+except:
+    sys.exit("Move api.py to the same folder as this script")
 
 trackingnumber = 'TRACKING_CODE_HERE'
 
 
-laststatut = TrackerApi.getLastStatut(trackingnumber)
+laststatut = Tracker.LastStatus(trackingnumber)
 if laststatut == 'Missing':
     print("Your Package Is Not Registerd In The System Yet\nOr Tracking Number Wrong")
-    sleep(3)
+    sleep(2)
     print('Script Continue Checking Anyway!')
     pass
 
@@ -34,11 +41,11 @@ def newdata():
 print('Running')
 while True:
     newdata()
-    laststatut = TrackerApi.getLastStatut(trackingnumber)
+    laststatut = Tracker.LastStatus(trackingnumber)
     print("Checking Shipment")
 
     if laststatut == 'Envoi livré':
-        print("Your Shipment Has Arrived")
+        print("Your Shipment Has Arrived :)")
         break
     try:
         if current_data != new_data:
@@ -50,6 +57,7 @@ while True:
             sleep(7200) #Check shipment every 2 hours
             with open(storing_file, 'w') as f:
                 f.write(laststatut)
+    except KeyboardInterrupt:
+        sys.exit('Keyboard Interrupt')
     except:
         currentdata()
-        

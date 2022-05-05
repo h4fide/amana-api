@@ -6,10 +6,10 @@ Post Maroc · Aaman · Barid Al Maghrib
 ## Usage
 
 ```python3
-from api import TrackerApi
+from api import Tracker
 
-TrackerApi.getLastStatut('TRACKING_CODE')
-TrackerApi.getPackageInformation('TRACKING_CODE')
+Tracker.LastStatus('TRACKING_CODE')
+Tracker.PackageInfo('TRACKING_CODE')
 
 }
 ```
@@ -20,13 +20,13 @@ TrackerApi.getPackageInformation('TRACKING_CODE')
 Shipment last status
 
 ```python3
-  TrackerApi.getLastStatut('TRACKING_CODE')
+  Tracker.LastStatus('TRACKING_CODE')
 ```
 
 Get all the information about the parcel as JSON
 
 ```python3
-  TrackerApi.getPackageInformation('TRACKING_CODE')
+  Tracker.PackageInfo('TRACKING_CODE')
 ```
 
 ```json
@@ -46,7 +46,7 @@ Get all the information about the parcel as JSON
 ```
 Example to get price of the package use this command
 ```python3
-  TrackerApi.getPackageInformation('TRACKING_CODE')['mtt_crbt']
+  Tracker.PackageInfo('TRACKING_CODE')['mtt_crbt']
 ```
 Output
 ```bash

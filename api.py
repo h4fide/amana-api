@@ -48,7 +48,9 @@ class Tracker(object):
                 last_status = info["dernier_statut"]
                 if last_status == 'Neant':
                     return 'Missing' # This Package Is Not Registerd In The System Yet or Tracking Code is Wrong
-                return last_status
+                if last_status == '':
+                    last_status = info["lieu_depot"]
+                return last_status 
             else:
                 return "Unknown"
         except:

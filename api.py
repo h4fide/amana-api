@@ -42,12 +42,12 @@ class Tracker(object):
             if LOBool == 'false':
                 etat = info['etat']
                 if etat == 'Infos.Indisponibles':
-                    return 'Missing'
+                    return 'Info-unavailable'
                 return etat
             if LOBool == 'true':
                 last_status = info["dernier_statut"]
                 if last_status == 'Neant':
-                    return 'Missing' # This Package Is Not Registerd In The System Yet or Tracking Code is Wrong
+                    return 'Info-unavailable' # This Package Is Not Registerd In The System Yet or Tracking Code is Wrong
                 if last_status == '':
                     last_status = info["lieu_depot"]
                 return last_status 

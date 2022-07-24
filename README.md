@@ -1,5 +1,5 @@
 # Morocco Post API
-Post Maroc · Aaman · Barid Al Maghrib
+Poste Maroc · Aaman · Barid Al Maghrib
 
 ![Logo](https://seeklogo.com/images/A/amana-messagerie-logo-859E7C8309-seeklogo.com.png)
 
